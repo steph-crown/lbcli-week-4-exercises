@@ -10,7 +10,7 @@ addr="2MvLcssW49n9atmksjwg2ZCMsEMsoj3pzUP"
 
 txid=$( bitcoin-cli -regtest decoderawtransaction $utxo_txid | jq -r ".txid")
 
-# 1 block per 10 mins, 6 blocks per hour, (24 * 6 = 144) blocks per day, (144 * 2 = 288) blocks in 2 weeks.
-# so we need to find the utxo that is 288+5 = 293 blocks deep.
+# 1 block per 10 mins, 6 blocks per hour, (24 * 6 = 144) blocks per day, (144 * 14 = 2016) blocks in 2 weeks.
+# so we need to find the utxo that is 2016+25 = 2041 blocks deep.
 
-bitcoin-cli -regtest -named createrawtransaction inputs='''[{ "txid": "'$txid'", "vout": 0 }, { "txid": "'$txid'", "vout": 1 }]''' outputs='''[{ "2MvLcssW49n9atmksjwg2ZCMsEMsoj3pzUP": 0.2 }]''' locktime=293
+bitcoin-cli -regtest -named createrawtransaction inputs='''[{ "txid": "'$txid'", "vout": 0 }, { "txid": "'$txid'", "vout": 1 }]''' outputs='''[{ "2MvLcssW49n9atmksjwg2ZCMsEMsoj3pzUP": 0.2 }]''' locktime=2041
